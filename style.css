@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px; /* Mobile-friendly width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 25px;
+}
+
+section {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Regret Clock Styling */
+.regret-clock {
+    background-color: #e0f7fa; /* Light Blue for motivation */
+    text-align: center;
+}
+
+#time-invested {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #00bcd4;
+}
+
+/* Daily Lesson Styling */
+#lesson-content {
+    margin-bottom: 15px;
+}
+
+.lesson-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#complete-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Green for completion */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#complete-button:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+#complete-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Skill Tracker Styling */
+#gap-list {
+    list-style: none;
+    padding: 0;
+}
+
+#gap-list li {
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: #fff3cd; /* Light Yellow for things to do */
+    border-left: 5px solid #ffc107;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#gap-list li.completed {
+    background-color: #d4edda; /* Light Green when done */
+    border-left-color: #28a745;
+    text-decoration: line-through;
+    color: #6c757d;
+}
