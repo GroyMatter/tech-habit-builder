@@ -1,203 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap');
-
-:root {
-    --primary-color: #ff69b4; /* Hot Pink/Deep Rose */
-    --secondary-color: #ffc0cb; /* Light Pink */
-    --text-color: #333;
-    --background-color: #ffe4e1; /* Misty Rose */
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden; /* To prevent scrollbar from hearts */
-    color: var(--text-color);
 }
 
 .container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    z-index: 10; /* Keep content above hearts */
-}
-
-.title {
-    font-family: 'Pacifico', cursive;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    text-shadow: 1px 1px 2px var(--secondary-color);
-}
-
-.subtitle {
-    margin-bottom: 25px;
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-#nickname-input {
     width: 100%;
+    max-width: 450px; /* Mobile-friendly width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 25px;
+}
+
+section {
     padding: 15px;
     margin-bottom: 20px;
-    border: 3px solid var(--secondary-color);
-    border-radius: 10px;
-    font-size: 1.1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Regret Clock Styling */
+.regret-clock {
+    background-color: #e0f7fa; /* Light Blue for motivation */
     text-align: center;
-    outline: none;
-    transition: border-color 0.3s;
 }
 
-#nickname-input:focus {
-    border-color: var(--primary-color);
-}
-
-#login-button {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2em;
+#time-invested {
+    font-size: 1.8em;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+    color: #00bcd4;
 }
 
-#login-button:hover {
-    background-color: #e65a9e; /* Slightly darker pink */
+/* Daily Lesson Styling */
+#lesson-content {
+    margin-bottom: 15px;
 }
 
-#login-button:active {
-    transform: scale(0.98);
-}
-
-.error-message {
-    color: red;
-    margin-top: 15px;
-    font-weight: 600;
-    min-height: 20px; /* Reserve space */
-}
-
-/* Question Screen Styles */
-
-/* NEW CODE: Added positioning and space for the moving button */
-#question-screen .options {
-    position: relative; 
-    min-height: 100px; 
-    align-items: flex-start; 
-    display: flex; /* Keep this to align buttons */
-    justify-content: space-around; /* Keep this for spacing */
-    margin-top: 30px; /* Keep this for spacing */
-}
-
-.btn {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    flex-grow: 1;
-    margin: 0 10px;
-    /* NEW CODE: Prevent text selection during button movement */
-    user-select: none;
-    -webkit-user-select: none; 
-    -moz-user-select: none;
-    -ms-user-select: none; 
-}
-
-#sobra-button {
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-
-#hindi-button {
-    background-color: #f44336; /* Red */
-    color: white;
-    /* NEW CODE: Ensure it can be moved by JS */
-    position: relative;
-    transition: all 0.1s ease-out; /* Smooth initial movement */
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Message Screen Styles */
-.message-box {
-    text-align: left;
-    background-color: var(--secondary-color);
-    padding: 25px;
-    border-radius: 15px;
-    margin-top: 20px;
-    line-height: 1.8;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+.lesson-title {
     font-size: 1.1em;
-    white-space: pre-wrap; /* Allows line breaks in the message */
-}
-
-.signature {
-    text-align: right;
-    margin-top: 15px;
-    font-style: italic;
     font-weight: bold;
-    color: var(--primary-color);
+    margin: 5px 0;
 }
 
-.closing-message {
-    margin-top: 20px;
-    font-style: italic;
-    font-weight: 600;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* --- Floating Hearts Animation --- */
-.heart-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+#complete-button {
     width: 100%;
-    height: 100%;
-    pointer-events: none; /* Allows clicks to pass through */
-    overflow: hidden;
+    padding: 12px;
+    background-color: #28a745; /* Green for completion */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.heart {
-    position: absolute;
-    bottom: -100px;
-    font-size: 2em;
-    color: var(--primary-color);
-    animation: floatUp linear infinite;
-    opacity: 0.8;
+#complete-button:hover:not(:disabled) {
+    background-color: #218838;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.6;
-    }
-    100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
+#complete-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Skill Tracker Styling */
+#gap-list {
+    list-style: none;
+    padding: 0;
+}
+
+#gap-list li {
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: #fff3cd; /* Light Yellow for things to do */
+    border-left: 5px solid #ffc107;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#gap-list li.completed {
+    background-color: #d4edda; /* Light Green when done */
+    border-left-color: #28a745;
+    text-decoration: line-through;
+    color: #6c757d;
 }
