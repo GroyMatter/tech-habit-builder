@@ -1,134 +1,143 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Screen Elements ---
-    const loginScreen = document.getElementById('login-screen');
-    const questionScreen = document.getElementById('question-screen');
-    const messageScreen = document.getElementById('message-screen');
+// --- Lesson Content Array ---
+const lessons = [
+    { title: "Intro to Docker", desc: "Watch a 10-min 'What is Docker?' video.", link: "https://www.youtube.com/results?search_query=what+is+docker+10+minutes" },
+    { title: "YAML Syntax Practice", desc: "Spend 10 mins reading a YAML syntax guide.", link: "https://www.tutorialspoint.com/yaml/index.htm" },
+    { title: "Python Automation Basic", desc: "Write a simple Python script to rename a file.", link: "#" },
+    { title: "SQL JOIN Types", desc: "Review the differences between INNER, LEFT, and RIGHT JOINs.", link: "#" },
+    { title: "REST API Basics", desc: "Learn the four main HTTP methods (GET, POST, PUT, DELETE).", link: "#" },
+    { title: "Stack Overflow Search", desc: "Practice searching Stack Overflow for a complex error message.", link: "#" },
+    { title: "Cloud Services (AWS/Azure)", desc: "Read about the concept of 'Serverless Computing'.", link: "#" },
+    // Add more lessons here!
+];
 
-    // --- Login Screen Elements ---
-    const nicknameInput = document.getElementById('nickname-input');
-    const loginButton = document.getElementById('login-button');
-    const errorMessage = document.getElementById('error-message');
+// --- DOM Elements ---
+const timeInvestedEl = document.getElementById('time-invested');
+const lessonTitleEl = document.getElementById('current-lesson-title');
+const lessonDescEl = document.getElementById('current-lesson-desc');
+const lessonLinkEl = document.getElementById('lesson-link');
+const completeButton = document.getElementById('complete-button');
+const gapList = document.getElementById('gap-list');
 
-    // Accepted nicknames (case-insensitive)
-    const acceptedNicknames = ['roy', 'be', 'beb', 'mahal', 'buba', 'bebeb', 'baby'];
+// --- Initialization Variables ---
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+const LESSON_TIME_MINUTES = 10;
 
-    // --- Question Screen Elements ---
-    const sobraButton = document.getElementById('sobra-button');
-    const hindiButton = document.getElementById('hindi-button');
+// --- Time Utilities ---
 
-    // State variable to track if 'SOBRA' has been clicked
-    let sobraClicked = false;
+// Loads total minutes from local storage, defaults to 0
+function loadTime() {
+    return parseInt(localStorage.getItem('timeInvestedMinutes') || '0');
+}
 
-    // --- Function to switch screens ---
-    function showScreen(screenToShow) {
-        loginScreen.classList.add('hidden');
-        questionScreen.classList.add('hidden');
-        messageScreen.classList.add('hidden');
-        screenToShow.classList.remove('hidden');
+// Converts total minutes into "X Hours, Y Minutes" format
+function formatTime(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours} Hours, ${minutes} Minutes`;
+}
+
+// Updates the display
+function updateTimeDisplay() {
+    const totalMinutes = loadTime();
+    timeInvestedEl.textContent = formatTime(totalMinutes);
+}
+
+
+// --- Lesson Logic ---
+
+function getTodaysLesson() {
+    const lastLessonDate = localStorage.getItem('lastLessonDate');
+    const today = new Date().toDateString();
+
+    // Check if a new lesson should be generated
+    if (lastLessonDate !== today) {
+        // Generate a random lesson index and save it for the day
+        const lessonIndex = Math.floor(Math.random() * lessons.length);
+        localStorage.setItem('todaysLessonIndex', lessonIndex);
+        localStorage.setItem('lastLessonDate', today);
+        localStorage.setItem('lessonCompletedToday', 'false');
     }
 
-    // --- Login Logic ---
-    loginButton.addEventListener('click', () => {
-        const inputNickname = nicknameInput.value.trim().toLowerCase();
+    const index = parseInt(localStorage.getItem('todaysLessonIndex'));
+    return lessons[index];
+}
 
-        if (acceptedNicknames.includes(inputNickname)) {
-            errorMessage.textContent = '';
-            showScreen(questionScreen);
-        } else {
-            // Updated error message for incorrect nickname
-            errorMessage.textContent = 'MALI SINONG LALAKI YAN BEBENG BRUH!! 😡';
-        }
-    });
+function displayLesson() {
+    const lesson = getTodaysLesson();
+    const isCompleted = localStorage.getItem('lessonCompletedToday') === 'true';
 
-    // Allows pressing Enter to login
-    nicknameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            loginButton.click();
-        }
-    });
+    lessonTitleEl.textContent = lesson.title;
+    lessonDescEl.textContent = lesson.desc;
 
-    // --- Question Logic ---
-
-    // Make 'Hindi Bruh' button move
-    hindiButton.addEventListener('mouseover', () => {
-        if (!sobraClicked) { // Only move if 'SOBRA' hasn't been clicked
-            const containerRect = hindiButton.closest('.options').getBoundingClientRect();
-            const buttonRect = hindiButton.getBoundingClientRect();
-
-            // Calculate new random position within the container bounds
-            // We want it to stay mostly within the options div to not disappear
-            const newX = Math.random() * (containerRect.width - buttonRect.width) - (buttonRect.left - containerRect.left);
-            const newY = Math.random() * (containerRect.height - buttonRect.height) - (buttonRect.top - containerRect.top);
-
-
-            hindiButton.style.position = 'relative'; // Ensure relative positioning for top/left
-            hindiButton.style.left = `${newX}px`;
-            hindiButton.style.top = `${newY}px`;
-            hindiButton.style.transition = 'all 0.1s ease-out'; // Smooth movement
-        }
-    });
-
-    // Reset button position when mouse leaves (optional, but makes it less frustrating)
-    hindiButton.addEventListener('mouseout', () => {
-        if (!sobraClicked) {
-            hindiButton.style.left = '0px';
-            hindiButton.style.top = '0px';
-            hindiButton.style.transition = 'all 0.3s ease-in-out';
-        }
-    });
-
-    // If 'Hindi Bruh' is clicked, do nothing (or show a subtle message)
-    hindiButton.addEventListener('click', () => {
-        if (!sobraClicked) {
-            // Optionally, you could add a subtle text message here instead of an alert
-            // For now, we'll just let the movement do the talking.
-        }
-    });
-
-
-    sobraButton.addEventListener('click', () => {
-        sobraClicked = true; // Set the flag
-        // Reset hindiButton position just in case, and remove its hover effect
-        hindiButton.style.position = 'static';
-        hindiButton.style.left = '0';
-        hindiButton.style.top = '0';
-        hindiButton.style.transition = 'none'; // Disable transition after 'SOBRA' is clicked
-        // You might want to disable the hover effect or make the button less prominent
-        hindiButton.style.pointerEvents = 'none'; // Make it unclickable after SOBA is picked
-        hindiButton.style.opacity = '0.5'; // Visually indicate it's disabled
-
-        showScreen(messageScreen);
-    });
-
-    // --- Floating Hearts Animation Logic ---
-    const heartContainer = document.querySelector('.heart-container');
-    const numberOfHearts = 20;
-
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '💖';
-
-        // Randomize position and animation delay
-        heart.style.left = `${Math.random() * 100}vw`;
-        heart.style.animationDuration = `${Math.random() * 8 + 6}s`; // 6s to 14s duration
-        heart.style.animationDelay = `-${Math.random() * 10}s`; // Start off-screen
-        heart.style.fontSize = `${Math.random() * 1.5 + 1.5}em`; // 1.5em to 3em size
-
-        heartContainer.appendChild(heart);
-
-        // Remove heart after it's done animating to save memory
-        setTimeout(() => {
-            heart.remove();
-        }, (parseFloat(heart.style.animationDuration) * 1000) + 100);
+    // Show link if available
+    if (lesson.link && lesson.link !== '#') {
+        lessonLinkEl.href = lesson.link;
+        lessonLinkEl.textContent = 'View Resource';
+        lessonLinkEl.style.display = 'inline';
+    } else {
+        lessonLinkEl.style.display = 'none';
     }
 
-    // Generate hearts initially and then continuously
-    for (let i = 0; i < numberOfHearts; i++) {
-        createHeart();
+    // Update button state
+    if (isCompleted) {
+        completeButton.textContent = "DONE for Today! See you tomorrow.";
+        completeButton.disabled = true;
+    } else {
+        completeButton.textContent = `Mark as Complete (${LESSON_TIME_MINUTES} Mins)`;
+        completeButton.disabled = false;
     }
+}
 
-    // Keep generating new hearts every second
-    setInterval(createHeart, 1000);
+// --- Event Listeners ---
 
+// Handle Lesson Completion
+completeButton.addEventListener('click', () => {
+    if (confirm(`Did you complete the ${LESSON_TIME_MINUTES} minute task?`)) {
+        // 1. Update Regret Clock
+        let totalMinutes = loadTime();
+        totalMinutes += LESSON_TIME_MINUTES;
+        localStorage.setItem('timeInvestedMinutes', totalMinutes.toString());
+
+        // 2. Mark lesson as done for the day
+        localStorage.setItem('lessonCompletedToday', 'true');
+
+        // 3. Update the UI
+        updateTimeDisplay();
+        displayLesson();
+
+        alert(`Congratulations! You invested ${LESSON_TIME_MINUTES} more minutes into your future.`);
+    }
 });
+
+// Handle Skill Gap Tracker completion
+gapList.addEventListener('click', (event) => {
+    const listItem = event.target.closest('li');
+    if (listItem) {
+        listItem.classList.toggle('completed');
+
+        // Simple saving of skill status
+        const skillId = listItem.getAttribute('data-skill');
+        const isCompleted = listItem.classList.contains('completed');
+        localStorage.setItem(`skill-${skillId}-completed`, isCompleted ? 'true' : 'false');
+    }
+});
+
+// --- Initialization ---
+
+function init() {
+    // Load Time & Lesson
+    updateTimeDisplay();
+    displayLesson();
+
+    // Load Skill Gap Tracker status
+    const listItems = gapList.querySelectorAll('li');
+    listItems.forEach(item => {
+        const skillId = item.getAttribute('data-skill');
+        if (localStorage.getItem(`skill-${skillId}-completed`) === 'true') {
+            item.classList.add('completed');
+        }
+    });
+}
+
+// Start the app!
+init();
