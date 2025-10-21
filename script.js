@@ -2,11 +2,11 @@
 const lessons = [
     { title: "Intro to Docker", desc: "Watch a 10-min 'What is Docker?' video.", link: "https://www.youtube.com/results?search_query=what+is+docker+10+minutes" },
     { title: "YAML Syntax Practice", desc: "Spend 10 mins reading a YAML syntax guide.", link: "https://www.tutorialspoint.com/yaml/index.htm" },
-    { title: "Python Automation Basic", desc: "Write a simple Python script to rename a file.", link: "#" },
-    { title: "SQL JOIN Types", desc: "Review the differences between INNER, LEFT, and RIGHT JOINs.", link: "#" },
-    { title: "REST API Basics", desc: "Learn the four main HTTP methods (GET, POST, PUT, DELETE).", link: "#" },
-    { title: "Stack Overflow Search", desc: "Practice searching Stack Overflow for a complex error message.", link: "#" },
-    { title: "Cloud Services (AWS/Azure)", desc: "Read about the concept of 'Serverless Computing'.", link: "#" },
+    { title: "Python Automation Basic", desc: "Write a simple Python script to rename a file.", link: "https://www.youtube.com/watch?v=xvFZjo5PgG0" },
+    { title: "SQL JOIN Types", desc: "Review the differences between INNER, LEFT, and RIGHT JOINs.", link: "https://www.youtube.com/watch?v=xvFZjo5PgG0" },
+    { title: "REST API Basics", desc: "Learn the four main HTTP methods (GET, POST, PUT, DELETE).", link: "https://www.youtube.com/watch?v=xvFZjo5PgG0" },
+    { title: "Stack Overflow Search", desc: "Practice searching Stack Overflow for a complex error message.", link: "https://www.youtube.com/watch?v=xvFZjo5PgG0" },
+    { title: "Cloud Services (AWS/Azure)", desc: "Read about the concept of 'Serverless Computing'.", link: "https://www.youtube.com/watch?v=xvFZjo5PgG0" },
     // Add more lessons here!
 ];
 
@@ -140,4 +140,5 @@ function init() {
 }
 
 // Start the app!
+
 init();
