@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10 Minute Habit: Small Steps, Big Change</title>
     
-    <link rel="icon" type="image/x-icon" href="/tech-habit-builder/favicon.ico?v=15"> 
+    <link rel="icon" type="image/x-icon" href="/tech-habit-builder/favicon.ico?v=14"> 
     
-    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
     <div class="motivation-quote left-quote">
@@ -19,7 +19,9 @@
 
     <div class="container">
         
-        <h1>Career Habit Builder</h1>
+        <div class="header-title-bar">
+            <img src="/tech-habit-builder/logo.jpg?v=14" alt="10 Minute Habit: Small Steps, Big Change" class="main-logo-image">
+        </div>
         
         <section class="regret-clock">
             <h2>Total Time Invested:</h2>
@@ -42,7 +44,18 @@
                 </ul>
         </section>
     </div>
-    
+
+    <div id="skillModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modal-skill-title"></h3>
+        <p><strong>Why learn this?</strong> <span id="modal-skill-description"></span></p>
+        <h4>Learning Resources (Under 15 minutes each):</h4>
+        <div id="modal-skill-resources">
+            </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
