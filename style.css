@@ -237,3 +237,23 @@ section {
 .modal-resource-link:hover {
     background-color: #004d40;
 }
+/* --- NEW LOGO STYLING --- */
+
+.header-logo {
+    text-align: center; /* Center the image container */
+    margin-bottom: 25px; 
+}
+
+.main-logo-image {
+    max-width: 80%; /* Ensure the logo scales nicely on small phones */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image itself */
+    border-radius: 10px; /* Optional: adds a slight corner rounding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Optional: Hide the text H1 if the logo image is clear enough */
+/* If you want to rely only on the logo image: */
+/* h1 { display: none; } */
+
