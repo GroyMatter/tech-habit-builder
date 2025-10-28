@@ -20,21 +20,27 @@
             <div id="lesson-content">
                 <p class="lesson-title" id="current-lesson-title">Loading...</p>
                 <p class="lesson-desc" id="current-lesson-desc">Click 'Start' to see your task.</p>
-                <a href="#" id="lesson-link" target="_blank" style="display: none;">View Resource</a>
+                <a href="#" id="lesson-link" target="_blank" class="modal-resource-link" style="display: none;">View Resource</a>
             </div>
             <button id="complete-button">Mark as Complete</button>
         </section>
 
         <section class="skill-tracker">
-            <h2>Your Skill Gaps (Click to complete)</h2>
+            <h2>Your Skill Gaps (Click to complete and view resources)</h2>
             <ul id="gap-list">
-                <li data-skill="docker">Learn Docker Basics</li>
-                <li data-skill="yaml">Practice YAML Configuration</li>
-                <li data-skill="scripting">Write an Automation Script</li>
-                <li data-skill="database">Understand SQL Joins</li>
-                <li data-skill="api">Practice REST API calls</li>
-            </ul>
+                </ul>
         </section>
+    </div>
+
+    <div id="skillModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modal-skill-title"></h3>
+        <p><strong>Why learn this?</strong> <span id="modal-skill-description"></span></p>
+        <h4>Learning Resources (Under 15 minutes each):</h4>
+        <div id="modal-skill-resources">
+            </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
