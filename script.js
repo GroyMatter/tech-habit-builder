@@ -64,14 +64,73 @@ const modalTitleEl = document.getElementById('modal-skill-title');
 const modalDescEl = document.getElementById('modal-skill-description');
 const modalResourcesEl = document.getElementById('modal-skill-resources');
 
+// --- Time Utilities (RESTORED) ---
+function loadTime() { 
+    return parseInt(localStorage.getItem('timeInvestedMinutes') || '0'); 
+}
 
-// --- Time Utilities (UNCHANGED) ---
-function loadTime() { /* ... unchanged ... */ return parseInt(localStorage.getItem('timeInvestedMinutes') || '0'); }
-function formatTime(totalMinutes) { /* ... unchanged ... */ const hours = Math.floor(totalMinutes / 60); const minutes = totalMinutes % 60; return `${hours} Hours, ${minutes} Minutes`; }
-function updateTimeDisplay() { /* ... unchanged ... */ timeInvestedEl.textContent = formatTime(loadTime()); }
+function formatTime(totalMinutes) { 
+    const hours = Math.floor(totalMinutes / 60); 
+    const minutes = totalMinutes % 60; 
+    return `${hours} Hours, ${minutes} Minutes`; 
+}
 
-// --- Lesson Logic (UNCHANGED) ---
-// Note: This logic for Daily Lesson is unchanged from previous steps.
+function updateTimeDisplay() { 
+    timeInvestedEl.textContent = formatTime(loadTime()); 
+}
+
+// --- Lesson Logic (RESTORED) ---
+function getTodaysLesson() {
+    const lastLessonDate = localStorage.getItem('lastLessonDate');
+    const today = new Date().toDateString();
+
+    if (lastLessonDate !== today) {
+        // Generate a random lesson index and save it for the day
+        const lessonIndex = Math.floor(Math.random() * lessons.length);
+        localStorage.setItem('todaysLessonIndex', lessonIndex);
+        localStorage.setItem('lastLessonDate', today);
+        localStorage.setItem('lessonCompletedToday', 'false');
+    }
+
+    const index = parseInt(localStorage.getItem('todaysLessonIndex'));
+    if (lessons && lessons.length > index) {
+        return lessons[index];
+    }
+    return { title: "Error Loading", desc: "Please refresh.", link: "#" };
+}
+
+
+function displayLesson() {
+    const lessonTitleEl = document.getElementById('current-lesson-title');
+    const lessonDescEl = document.getElementById('current-lesson-desc');
+    const lessonLinkEl = document.getElementById('lesson-link');
+    
+    const lesson = getTodaysLesson(); 
+    const isCompleted = localStorage.getItem('lessonCompletedToday') === 'true';
+
+    lessonTitleEl.textContent = lesson.title;
+    lessonDescEl.textContent = lesson.desc;
+
+    // Update link visibility
+    if (lesson.link && lesson.link !== '#') {
+        lessonLinkEl.href = lesson.link;
+        lessonLinkEl.textContent = 'View Resource';
+        lessonLinkEl.style.display = 'block'; // Changed to block for new design
+    } else {
+        lessonLinkEl.style.display = 'none';
+    }
+
+    // Update button state 
+    if (completeButton) {
+        if (isCompleted) {
+            completeButton.textContent = "DONE for Today! See you tomorrow.";
+            completeButton.disabled = true;
+        } else {
+            completeButton.textContent = `Mark as Complete (${LESSON_TIME_MINUTES} Mins)`;
+            completeButton.disabled = false;
+        }
+    }
+}
 
 // --- NEW: Skill Gap & Modal Logic ---
 
@@ -114,6 +173,28 @@ function openSkillModal(skillKey) {
 
 // --- Event Listeners ---
 
+// Handle Lesson Completion
+if (completeButton) {
+    completeButton.addEventListener('click', () => {
+        if (confirm(`Did you complete the ${LESSON_TIME_MINUTES} minute task?`)) {
+            // 1. Update Regret Clock
+            let totalMinutes = loadTime();
+            totalMinutes += LESSON_TIME_MINUTES;
+            localStorage.setItem('timeInvestedMinutes', totalMinutes.toString());
+
+            // 2. Mark lesson as done for the day
+            localStorage.setItem('lessonCompletedToday', 'true');
+
+            // 3. Update the UI
+            updateTimeDisplay();
+            displayLesson();
+
+            alert(`Congratulations! You invested ${LESSON_TIME_MINUTES} more minutes into your future.`);
+        }
+    });
+}
+
+
 // Handle Skill Gap Clicks (to open modal OR mark complete)
 gapList.addEventListener('click', (event) => {
     const listItem = event.target.closest('li');
@@ -148,8 +229,7 @@ window.onclick = function(event) {
 function init() {
     // 1. Initialize time and lesson status
     updateTimeDisplay();
-    // Assuming you still have a function named 'displayLesson' from previous steps:
-    // displayLesson(); 
+    displayLesson(); // <--- This is now functional and will load the content
 
     // 2. Populate the skill list from the new data structure
     populateSkillList();
