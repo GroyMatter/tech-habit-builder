@@ -57,18 +57,37 @@ body {
 }
 
 /* Optional: Fade-in animation for quotes */
+/* ALL OTHER CSS REMAINS THE SAME, ONLY THE KEYFRAMES AND A SMALL FIX ARE ADDED */
+
+/* ... (Your CSS code from line 1 up to @keyframes fadeIn remains unchanged) ... */
+
+/* Optional: Fade-in animation for quotes */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px) rotate(0deg);
+        transform: translateY(20px); /* Removed rotation from generic keyframe */
     }
     to {
         opacity: 1;
-        transform: translateY(0) rotate(var(--rotation-angle, 0deg)); /* Use custom property for rotation */
+        transform: translateY(0);
     }
 }
-.left-quote { --rotation-angle: -5deg; }
-.right-quote { --rotation-angle: 5deg; }
+
+.left-quote {
+    top: 20%;
+    left: 5%;
+    transform: rotate(-5deg); 
+    animation: fadeIn 2s ease-out 0.5s forwards; /* Re-added animation property */
+}
+
+.right-quote {
+    bottom: 20%;
+    right: 5%;
+    transform: rotate(5deg); 
+    animation: fadeIn 2s ease-out 1s forwards; /* Re-added animation property */
+}
+
+/* ... (Your remaining CSS code, including the NEW LOGO STYLING, remains unchanged) ... */
 
 
 /* Responsive adjustments for quotes */
@@ -256,4 +275,5 @@ section {
 /* Optional: Hide the text H1 if the logo image is clear enough */
 /* If you want to rely only on the logo image: */
 /* h1 { display: none; } */
+
 
