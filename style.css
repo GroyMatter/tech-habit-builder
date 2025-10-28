@@ -1,35 +1,45 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8; /* Soft, light background */
-    color: #333;
+    /* --- NEW LIVELY BACKGROUND --- */
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* A vibrant gradient from teal to soft purple */
+    /* You can try other gradients:
+    * background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%); // Warm Orange-Yellow
+    * background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); // Fresh Green-Blue
+    * background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); // Soft Red-Pink (similar to your example feel)
+    */
+    color: #333; /* Keep main text dark for readability */
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
+    min-height: 100vh; /* Ensure background covers full height */
+    align-items: center; /* Center content vertically */
 }
 
 .container {
     width: 100%;
-    max-width: 480px; /* Slightly wider for comfort */
-    background: #fff;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a modern feel */
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 h1 {
     text-align: center;
-    color: #00796b; /* Calming Teal */
+    color: #00796b; /* Calming Teal - still good for the main title */
     margin-bottom: 25px;
-    font-weight: 600;
+    font-weight: 700; /* Bolder for impact */
+    font-size: 2em; /* Slightly larger */
 }
 
 h2 {
-    color: #555;
+    color: #444; /* Darker for better contrast */
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
     margin-top: 30px;
-    font-size: 1.2em;
+    font-size: 1.25em; /* Slightly larger */
 }
 
 section {
@@ -41,26 +51,26 @@ section {
 
 /* Regret Clock Styling */
 .regret-clock {
-    background-color: #e3f2fd; /* Very light blue */
+    background-color: #e0f7fa; /* Still a light blue, provides good contrast */
     text-align: center;
     padding: 20px 15px;
 }
 
 #time-invested {
-    font-size: 2em;
-    font-weight: 700;
+    font-size: 2.2em; /* Even larger */
+    font-weight: 800; /* Extra bold */
     color: #1e88e5; /* Strong motivating blue */
     margin-top: 5px;
 }
 
 /* Daily Lesson & Completion Button */
 #daily-lesson {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Keep this white */
     border: 1px solid #e0e0e0;
 }
 
 .lesson-title {
-    font-size: 1.2em;
+    font-size: 1.25em;
     font-weight: bold;
     color: #004d40;
     margin: 10px 0 5px 0;
@@ -68,18 +78,19 @@ section {
 
 #complete-button {
     width: 100%;
-    padding: 12px;
+    padding: 14px; /* More prominent button */
     background-color: #43a047; /* Motivating Green */
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1.1em;
+    font-size: 1.15em; /* Slightly larger text */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 #complete-button:hover:not(:disabled) {
     background-color: #388e3c;
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
 #complete-button:disabled {
@@ -119,52 +130,56 @@ section {
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.6); /* Darker overlay */
+    backdrop-filter: blur(5px); /* Optional: add a blur effect to background */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 25px;
+    margin: 10% auto; /* Move slightly higher for better visibility on mobile */
+    padding: 30px;
     border-radius: 12px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 90%; /* Wider on small screens */
+    max-width: 550px; /* Max width */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    position: relative; /* Needed for close button positioning */
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #888;
+    position: absolute; /* Position relative to modal-content */
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: #333;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-resource-link {
     display: block;
-    padding: 8px;
-    margin-top: 10px;
+    padding: 10px;
+    margin-top: 12px;
     background-color: #00796b;
     color: white;
     text-align: center;
     text-decoration: none;
     border-radius: 6px;
     transition: background-color 0.3s;
+    font-size: 1em;
 }
 
 .modal-resource-link:hover {
     background-color: #004d40;
 }
-
