@@ -276,16 +276,7 @@ section {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* HIDE THE REDUNDANT H1 TEXT */
-h1 {
-    display: none; /* Hide the 'Career Habit Builder' text since the logo image has the title */
-}
-
-/* HIDE THE REDUNDANT TAGLINE */
-.tagline {
-    display: none; /* Hide the separate tagline since it's now part of the logo image */
-}
-
 /* You must also check the H1 block and ensure display:none is added */
 /* If you want to keep the H1 text visible for any reason, DELETE the h1 {display: none;} block above. */
+
 
