@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10 Minute Habit: Small Steps, Big Change</title>
     
-    <link rel="icon" type="image/x-icon" href="/tech-habit-builder/favicon.ico?v=12"> 
+    <link rel="icon" type="image/x-icon" href="/tech-habit-builder/favicon.ico?v=14"> 
     
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
     <div class="motivation-quote left-quote">
@@ -19,17 +19,41 @@
 
     <div class="container">
         
-        <div class="header-logo">
-            <img src="/tech-habit-builder/logo.jpg?v=12" alt="10 Minute Habit: Small Steps, Big Change" class="main-logo-image">
+        <div class="header-title-bar">
+            <img src="/tech-habit-builder/logo.jpg?v=14" alt="10 Minute Habit: Small Steps, Big Change" class="main-logo-image">
         </div>
+        
+        <section class="regret-clock">
+            <h2>Total Time Invested:</h2>
+            <p id="time-invested">0 Hours, 0 Minutes</p>
+        </section>
 
-        <h1>Career Habit Builder</h1>
+        <section id="daily-lesson">
+            <h2>Daily Micro-Lesson (10 Mins)</h2>
+            <div id="lesson-content">
+                <p class="lesson-title" id="current-lesson-title">Loading...</p>
+                <p class="lesson-desc" id="current-lesson-desc">Click 'Start' to see your task.</p>
+                <a href="#" id="lesson-link" target="_blank" class="modal-resource-link" style="display: none;">View Resource</a>
+            </div>
+            <button id="complete-button">Mark as Complete</button>
+        </section>
 
-        </div>
+        <section class="skill-tracker">
+            <h2>Your Skill Gaps (Click to complete and view resources)</h2>
+            <ul id="gap-list">
+                </ul>
+        </section>
+    </div>
 
     <div id="skillModal" class="modal">
       <div class="modal-content">
-        </div>
+        <span class="close">&times;</span>
+        <h3 id="modal-skill-title"></h3>
+        <p><strong>Why learn this?</strong> <span id="modal-skill-description"></span></p>
+        <h4>Learning Resources (Under 15 minutes each):</h4>
+        <div id="modal-skill-resources">
+            </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
