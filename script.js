@@ -1,11 +1,11 @@
 // --- Global Data Structures ---
 const LESSON_TIME_MINUTES = 10;
 const lessons = [
-    { title: "Intro to Docker", desc: "Watch a 10-min 'What is Docker?' video.", link: "https://www.youtube.com/results?search_query=what+is+docker+10+minutes" },
+    { title: "Intro to Docker", desc: "Watch a 10-min 'What is Docker?' video.", link: "https://www.youtube.com/watch?v=AuCOX0Kclf4" },
     { title: "YAML Syntax Practice", desc: "Spend 10 mins reading a YAML syntax guide.", link: "https://www.tutorialspoint.com/yaml/index.htm" },
-    { title: "Python Automation Basic", desc: "Write a simple Python script to rename a file.", link: "#" },
-    { title: "SQL JOIN Types", desc: "Review the differences between INNER, LEFT, and RIGHT JOINs.", link: "#" },
-    { title: "REST API Basics", desc: "Learn the four main HTTP methods (GET, POST, PUT, DELETE).", link: "#" },
+    { title: "Python Automation Basic", desc: "Write a simple Python script to rename a file.", link: "https://www.youtube.com/watch?v=fWjsdhR3z3c" },
+    { title: "SQL JOIN Types", desc: "Review the differences between INNER, LEFT, and RIGHT JOINs.", link: "https://youtu.be/Yh4CrPHVBdE?si=ULo4SJWluAU97UX1" },
+    { title: "REST API Basics", desc: "Learn the four main HTTP methods (GET, POST, PUT, DELETE).", link: "https://youtu.be/lsMQRaeKNDk?si=NMxl4tLcwxdgn5W3" },
 ];
 
 // NEW: Richer data for Skill Gaps (Used in the clickable list and modal)
@@ -14,7 +14,7 @@ const skillGaps = {
         title: "Learn Docker Basics",
         why: "Docker is essential for creating consistent development and production environments, eliminating 'it works on my machine' problems.",
         resources: [
-            { name: "Official Docker 101 Video", link: "https://www.youtube.com/watch?v=fqMOX6ap5cUShortExample" },
+            { name: "Official Docker 101 Video", link: "https://youtu.be/a1M_thDTqmU?si=NIOrgENBBrivBdMe" },
             { name: "Docker vs. VM in 5 minutes", link: "https://www.youtube.com/watch?v=short-example-link-2" }
         ]
     },
@@ -22,32 +22,32 @@ const skillGaps = {
         title: "Practice YAML Configuration",
         why: "YAML is the standard configuration language for modern DevOps tools (like Kubernetes and Ansible).",
         resources: [
-            { name: "YAML Quick Tutorial", link: "https://yaml-tutorial.com/short-example" },
-            { name: "Online YAML Validator", link: "https://online-yaml-validator.example.com" }
+            { name: "YAML Quick Tutorial", link: "https://www.youtube.com/watch?v=BEki_rsWu4E" },
+            { name: "Online YAML Validator", link: "https://jsonformatter.org/yaml-validator" }
         ]
     },
     'scripting': {
         title: "Write an Automation Script",
         why: "Automation reduces manual workload, addresses Gab's anxiety over large-scale, manual server errors, and is highly valued in IT.",
         resources: [
-            { name: "Python Automation for Beginners", link: "#" },
-            { name: "PowerShell Basics (Windows Admin)", link: "#" }
+            { name: "Python Automation for Beginners", link: "https://www.geeksforgeeks.org/python/python-automation" },
+            { name: "PowerShell Basics (Windows Admin)", link: "https://www.tutorialspoint.com/powershell/index.htm" }
         ]
     },
     'joins': {
         title: "Understand SQL Joins",
         why: "Proficiency in complex database queries is fundamental for back-end efficiency and data analysis in any company.",
         resources: [
-            { name: "SQL Joins Visualizer", link: "#" },
-            { name: "Practice SQL Joins Quiz", link: "#" }
+            { name: "SQL Joins Visualizer", link: "https://sql-joins.leopard.in.ua" },
+            { name: "Practice SQL Joins Quiz", link: "https://www.geeksforgeeks.org/quizzes/sql-joins-functions-quiz" }
         ]
     },
     'api': {
         title: "Practice REST API calls",
         why: "APIs are the backbone of modern software. Knowing how they work is key to integrating different company systems.",
         resources: [
-            { name: "What is a REST API?", link: "#" },
-            { name: "Intro to Postman tool", link: "#" }
+            { name: "What is a REST API?", link: "https://www.youtube.com/watch?v=WRsKs-K6iII" },
+            { name: "Intro to Postman tool", link: "https://www.youtube.com/watch?v=cGn_LTFCif0" }
         ]
     }
 };
@@ -237,3 +237,4 @@ function init() {
 
 // Start the app!
 init();
+
