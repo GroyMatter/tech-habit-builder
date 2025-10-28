@@ -15,7 +15,7 @@ const skillGaps = {
         why: "Docker is essential for creating consistent development and production environments, eliminating 'it works on my machine' problems.",
         resources: [
             { name: "Official Docker 101 Video", link: "https://youtu.be/a1M_thDTqmU?si=NIOrgENBBrivBdMe" },
-            { name: "Docker vs. VM in 5 minutes", link: "https://www.youtube.com/watch?v=short-example-link-2" }
+            { name: "Docker vs. VM in 5 minutes", link: "https://youtu.be/_dfLOzuIg2o?si=FYl0pijGab4zPRWH" }
         ]
     },
     'yaml': {
@@ -237,4 +237,5 @@ function init() {
 
 // Start the app!
 init();
+
 
