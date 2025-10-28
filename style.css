@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8; /* Soft, light background */
     color: #333;
     margin: 0;
     padding: 20px;
@@ -10,74 +10,80 @@ body {
 
 .container {
     width: 100%;
-    max-width: 450px; /* Mobile-friendly width */
+    max-width: 480px; /* Slightly wider for comfort */
     background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
-    color: #007bff;
-    margin-bottom: 20px;
+    color: #00796b; /* Calming Teal */
+    margin-bottom: 25px;
+    font-weight: 600;
 }
 
 h2 {
     color: #555;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-    margin-top: 25px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    font-size: 1.2em;
 }
 
 section {
     padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
 /* Regret Clock Styling */
 .regret-clock {
-    background-color: #e0f7fa; /* Light Blue for motivation */
+    background-color: #e3f2fd; /* Very light blue */
     text-align: center;
+    padding: 20px 15px;
 }
 
 #time-invested {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #00bcd4;
+    font-size: 2em;
+    font-weight: 700;
+    color: #1e88e5; /* Strong motivating blue */
+    margin-top: 5px;
 }
 
-/* Daily Lesson Styling */
-#lesson-content {
-    margin-bottom: 15px;
+/* Daily Lesson & Completion Button */
+#daily-lesson {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
 }
 
 .lesson-title {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: bold;
-    margin: 5px 0;
+    color: #004d40;
+    margin: 10px 0 5px 0;
 }
 
 #complete-button {
     width: 100%;
     padding: 12px;
-    background-color: #28a745; /* Green for completion */
+    background-color: #43a047; /* Motivating Green */
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 #complete-button:hover:not(:disabled) {
-    background-color: #218838;
+    background-color: #388e3c;
 }
 
 #complete-button:disabled {
-    background-color: #ccc;
+    background-color: #bdbdbd; /* Soft gray when done */
     cursor: not-allowed;
 }
 
@@ -88,18 +94,76 @@ section {
 }
 
 #gap-list li {
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 8px;
-    background-color: #fff3cd; /* Light Yellow for things to do */
-    border-left: 5px solid #ffc107;
-    border-radius: 4px;
+    background-color: #fffde7; /* Soft yellow for attention */
+    border-left: 5px solid #ffeb3b;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#gap-list li:hover {
+    background-color: #fff9c4;
+    transform: translateY(-2px); /* Slight lift on hover */
 }
 
 #gap-list li.completed {
-    background-color: #d4edda; /* Light Green when done */
-    border-left-color: #28a745;
+    background-color: #e8f5e9; /* Light, successful green */
+    border-left-color: #388e3c;
     text-decoration: line-through;
-    color: #6c757d;
+    color: #757575;
+}
+
+/* Modal for Skill Details */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 25px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-resource-link {
+    display: block;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #00796b;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.modal-resource-link:hover {
+    background-color: #004d40;
 }
