@@ -1,45 +1,99 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* --- NEW LIVELY BACKGROUND --- */
-    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* A vibrant gradient from teal to soft purple */
-    /* You can try other gradients:
-    * background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%); // Warm Orange-Yellow
-    * background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); // Fresh Green-Blue
-    * background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); // Soft Red-Pink (similar to your example feel)
-    */
-    color: #333; /* Keep main text dark for readability */
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* Your chosen lively gradient */
+    color: #333;
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
-    min-height: 100vh; /* Ensure background covers full height */
-    align-items: center; /* Center content vertically */
+    min-height: 100vh;
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of quotes */
 }
 
 .container {
     width: 100%;
     max-width: 480px;
-    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a modern feel */
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    z-index: 10; /* Ensure container is above quotes */
+    position: relative; /* Ensure it stacks correctly */
 }
 
+/* --- NEW QUOTE STYLING --- */
+.motivation-quote {
+    position: absolute;
+    font-family: 'Georgia', serif; /* A more classic font for quotes */
+    font-size: 1.2em;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7); /* Slightly transparent white for a subtle float */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    width: 200px; /* Fixed width for quotes */
+    padding: 15px;
+    line-height: 1.4;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 10px;
+    /* Optional: background-color: rgba(0,0,0,0.1); */ /* Uncomment for a slight background behind text */
+    /* Add animation for subtle movement */
+    animation: fadeIn 2s ease-out forwards;
+}
+
+.left-quote {
+    top: 20%;
+    left: 5%;
+    transform: rotate(-5deg); /* Slight rotation for dynamic feel */
+    animation-delay: 0.5s;
+}
+
+.right-quote {
+    bottom: 20%;
+    right: 5%;
+    transform: rotate(5deg); /* Slight rotation for dynamic feel */
+    animation-delay: 1s;
+}
+
+/* Optional: Fade-in animation for quotes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotation-angle, 0deg)); /* Use custom property for rotation */
+    }
+}
+.left-quote { --rotation-angle: -5deg; }
+.right-quote { --rotation-angle: 5deg; }
+
+
+/* Responsive adjustments for quotes */
+@media (max-width: 900px) {
+    .motivation-quote {
+        display: none; /* Hide quotes on smaller screens to prioritize app content */
+    }
+}
+
+
+/* --- Existing styles (unchanged from last update) --- */
 h1 {
     text-align: center;
-    color: #00796b; /* Calming Teal - still good for the main title */
+    color: #00796b;
     margin-bottom: 25px;
-    font-weight: 700; /* Bolder for impact */
-    font-size: 2em; /* Slightly larger */
+    font-weight: 700;
+    font-size: 2em;
 }
 
 h2 {
-    color: #444; /* Darker for better contrast */
+    color: #444;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
     margin-top: 30px;
-    font-size: 1.25em; /* Slightly larger */
+    font-size: 1.25em;
 }
 
 section {
@@ -51,21 +105,21 @@ section {
 
 /* Regret Clock Styling */
 .regret-clock {
-    background-color: #e0f7fa; /* Still a light blue, provides good contrast */
+    background-color: #e0f7fa;
     text-align: center;
     padding: 20px 15px;
 }
 
 #time-invested {
-    font-size: 2.2em; /* Even larger */
-    font-weight: 800; /* Extra bold */
-    color: #1e88e5; /* Strong motivating blue */
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #1e88e5;
     margin-top: 5px;
 }
 
 /* Daily Lesson & Completion Button */
 #daily-lesson {
-    background-color: #ffffff; /* Keep this white */
+    background-color: #ffffff;
     border: 1px solid #e0e0e0;
 }
 
@@ -78,23 +132,23 @@ section {
 
 #complete-button {
     width: 100%;
-    padding: 14px; /* More prominent button */
-    background-color: #43a047; /* Motivating Green */
+    padding: 14px;
+    background-color: #43a047;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1.15em; /* Slightly larger text */
+    font-size: 1.15em;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 #complete-button:hover:not(:disabled) {
     background-color: #388e3c;
-    transform: translateY(-2px); /* Lift effect on hover */
+    transform: translateY(-2px);
 }
 
 #complete-button:disabled {
-    background-color: #bdbdbd; /* Soft gray when done */
+    background-color: #bdbdbd;
     cursor: not-allowed;
 }
 
@@ -107,7 +161,7 @@ section {
 #gap-list li {
     padding: 15px;
     margin-bottom: 8px;
-    background-color: #fffde7; /* Soft yellow for attention */
+    background-color: #fffde7;
     border-left: 5px solid #ffeb3b;
     border-radius: 6px;
     cursor: pointer;
@@ -116,11 +170,11 @@ section {
 
 #gap-list li:hover {
     background-color: #fff9c4;
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px);
 }
 
 #gap-list li.completed {
-    background-color: #e8f5e9; /* Light, successful green */
+    background-color: #e8f5e9;
     border-left-color: #388e3c;
     text-decoration: line-through;
     color: #757575;
@@ -128,32 +182,32 @@ section {
 
 /* Modal for Skill Details */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
-    z-index: 1000; /* Higher z-index to ensure it's on top */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.6); /* Darker overlay */
-    backdrop-filter: blur(5px); /* Optional: add a blur effect to background */
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; /* Move slightly higher for better visibility on mobile */
+    margin: 10% auto;
     padding: 30px;
     border-radius: 12px;
-    width: 90%; /* Wider on small screens */
-    max-width: 550px; /* Max width */
+    width: 90%;
+    max-width: 550px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    position: relative; /* Needed for close button positioning */
+    position: relative;
 }
 
 .close {
     color: #888;
-    position: absolute; /* Position relative to modal-content */
+    position: absolute;
     top: 15px;
     right: 25px;
     font-size: 30px;
